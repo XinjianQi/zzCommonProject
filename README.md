@@ -33,4 +33,6 @@ zzCommonProject
 
 14.自定义顶部状态栏的使用。
 
+15.异步文件下载zzDownFile
+
 更多功能正在添加中......
