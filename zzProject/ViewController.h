@@ -8,7 +8,10 @@
 
 #import "zzViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<zzDownFileDelegate>
+{
+    long long processAllSize;
+}
 @property (weak, nonatomic) IBOutlet UIScrollView *baseScroll;
 - (IBAction)touchGetPostMsg:(id)sender;
 - (IBAction)touchScrolImage:(id)sender;
@@ -24,5 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnTime;
 - (IBAction)touchOpenSqlite:(id)sender;
 - (IBAction)touchProcess:(id)sender;
+- (IBAction)touchTopbar:(id)sender;
+@property (weak, nonatomic) IBOutlet UIProgressView *process;
+@property (weak, nonatomic) IBOutlet UILabel *processText;
 
 @end

@@ -9,6 +9,8 @@
                 <outlet property="baseScroll" destination="R1C-Y0-rch" id="XWr-Qp-uZm"/>
                 <outlet property="btnBiankuang" destination="5nL-Mr-T8Z" id="xzi-P1-pak"/>
                 <outlet property="btnTime" destination="liy-j0-lbH" id="HRB-zP-gc7"/>
+                <outlet property="process" destination="zhU-w1-H8y" id="vy2-lN-u0x"/>
+                <outlet property="processText" destination="1yt-Rn-qy1" id="8tR-54-UJ0"/>
                 <outlet property="sizeLabel" destination="jwq-UM-UfF" id="TQT-fq-tI2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -153,9 +155,31 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="touchProcess:" destination="-1" eventType="touchDown" id="qGi-cU-qPK"/>
+                                <action selector="touchTopbar:" destination="-1" eventType="touchDown" id="apm-z6-Wq1"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tf6-XK-AGN">
+                            <rect key="frame" x="25" y="374" width="82" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="文件异步下载">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="touchProcess:" destination="-1" eventType="touchDown" id="sKf-Q1-Irk"/>
+                            </connections>
+                        </button>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="zhU-w1-H8y">
+                            <rect key="frame" x="115" y="388" width="146" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </progressView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1yt-Rn-qy1">
+                            <rect key="frame" x="269" y="378" width="42" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                 </scrollView>
             </subviews>

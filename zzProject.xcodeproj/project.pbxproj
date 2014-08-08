@@ -59,6 +59,7 @@
 		18B0FC96198A0DBB00A87C7D /* zzData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B0FC74198A0DBB00A87C7D /* zzData.m */; };
 		18B0FC9B198A0F0700A87C7D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B0FC99198A0F0700A87C7D /* ViewController.m */; };
 		18B0FC9C198A0F0700A87C7D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B0FC9A198A0F0700A87C7D /* ViewController.xib */; };
+		18EDC2B819949633005C92AA /* zzDownFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EDC2B719949633005C92AA /* zzDownFile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,8 @@
 		18B0FC98198A0F0700A87C7D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		18B0FC99198A0F0700A87C7D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		18B0FC9A198A0F0700A87C7D /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		18EDC2B619949633005C92AA /* zzDownFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zzDownFile.h; sourceTree = "<group>"; };
+		18EDC2B719949633005C92AA /* zzDownFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zzDownFile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +428,8 @@
 		18B0FC5F198A0DBB00A87C7D /* zzFiles */ = {
 			isa = PBXGroup;
 			children = (
+				18EDC2B619949633005C92AA /* zzDownFile.h */,
+				18EDC2B719949633005C92AA /* zzDownFile.m */,
 				187FD48F198A217900623648 /* zzPickerView.h */,
 				187FD490198A217900623648 /* zzPickerView.m */,
 				187FD481198A113000623648 /* zzInsetsTextField.h */,
@@ -589,6 +594,7 @@
 				18B0FC8E198A0DBB00A87C7D /* zzAnimat.m in Sources */,
 				18B0FC7E198A0DBB00A87C7D /* KxMenu.m in Sources */,
 				187FD480198A10DB00623648 /* CSqlite.m in Sources */,
+				18EDC2B819949633005C92AA /* zzDownFile.m in Sources */,
 				18B0FC83198A0DBB00A87C7D /* RECommonFunctions.m in Sources */,
 				18B0FC91198A0DBB00A87C7D /* zzSelectDateView.m in Sources */,
 				18B0FC87198A0DBB00A87C7D /* pinyin.m in Sources */,

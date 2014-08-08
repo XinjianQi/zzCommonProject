@@ -118,9 +118,8 @@
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:str delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
     [alert show];
 }
-
 ////自定义系统状态栏
-- (IBAction)touchProcess:(id)sender {
+- (IBAction)touchTopbar:(id)sender {
     ///隐藏系统状态栏
     UIApplication *app = [UIApplication sharedApplication];
     //[app setStatusBarHidden:YES withAnimation:YES];
@@ -142,9 +141,40 @@
     //测试效果
     ViewController *page = [[ViewController alloc]init];
     [self.navigationController pushViewController:page animated:YES];
+    
+    //    ////下面代码是把状态栏再显示出来
+    //    [app.keyWindow setWindowLevel:UIWindowLevelNormal];
+    //    [view removeFromSuperview];
 
-//    ////下面代码是把状态栏再显示出来
-//    [app.keyWindow setWindowLevel:UIWindowLevelNormal];
-//    [view removeFromSuperview];
 }
+
+//异步文件下载
+- (IBAction)touchProcess:(id)sender {
+    self.process.progress = 0;
+    zzDownFile *downfile = [[zzDownFile alloc]initWith:0 fileUrl:@"http://app.xtox.net/jykp/jykp.ipa" savePath:nil];
+    downfile.delegate = self;
+    [downfile start];
+}
+/////*********************异步下载代理
+-(void)ReturnFileSize:(int)tag length:(long long)length
+{
+    processAllSize = length;
+}
+-(void)ReturnDownSize:(int)tag length:(long long)length
+{
+    self.process.progress+= (length*1.0)/processAllSize;
+    self.processText.text = [NSString stringWithFormat:@"%0.0f%%",self.process.progress*100];
+}
+-(void)ReturnSucess:(int)tag filePath:(NSString*)filePath
+{
+    self.process.progress = 1;
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"下载完成" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
+    
+}
+-(void)ReturnError:(int)tag msg:(NSString*)msg{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"下载失败" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
+}
+/////*********************
 @end

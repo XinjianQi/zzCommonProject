@@ -28,6 +28,7 @@
 #import "RESideMenu.h"
 #import "CSqlite.h"
 #import "zzLineLabel.h"
+#import "zzDownFile.h"
 
 @interface zzCommon : NSObject
 
