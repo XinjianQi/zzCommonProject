@@ -17,6 +17,7 @@
 {
     if(url == nil || url.length==0)
         return nil;
+    
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //根据url检车本地cache内缓存文件
     NSString *localPath = [zzURLImage GetLocalPath:url];
@@ -40,10 +41,40 @@
     }
 }
 
+
++(NSData*)GetDataFromUrl:(NSString *)url
+{
+    if(url == nil || url.length==0)
+        return nil;
+    
+    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //根据url检车本地cache内缓存文件
+    NSString *localPath = [zzURLImage GetLocalPath:url];
+    if(YES==[zzURLImage isFileHas:localPath])
+    {
+        NSData *data = [NSData dataWithContentsOfFile:localPath];
+        if(data.length>0)
+        {
+            return data;
+        }
+        else
+        {
+            return nil;
+        }
+    }
+    else
+    {
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+        return data;
+    }
+}
+
+
 +(UIImage*)GetImageFromLocal:(NSString*)url
 {
     if(url == nil || url.length==0)
         return nil;
+    
     url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *localPath = [zzURLImage GetLocalPath:url];
     if(YES==[zzURLImage isFileHas:localPath])
@@ -116,6 +147,7 @@
 -(id)initWithUrl:(NSString*)url defImage:(UIImage*)defImage
 {
     self = [super init];
+    
     self.image = defImage;
     if(url == nil || url.length==0)
         return self;
@@ -129,7 +161,7 @@
         if(data.length>0)
         {
             UIImage *image =[UIImage imageWithData:data];
-            self.image = image;
+            [self updateImage:image];
         }
     }
     else
@@ -140,9 +172,11 @@
     return self;
 }
 
+
 -(id)initWithUrl:(NSString*)url
 {
     self = [super init];
+    
     self.image = [UIImage imageNamed:@"tx.png"];
     if(url == nil || url.length==0)
         return self;
@@ -156,7 +190,7 @@
         if(data.length>0)
         {
           UIImage *image =[UIImage imageWithData:data];
-          self.image = image;
+          [self updateImage:image];
         }
     }
     else
@@ -165,6 +199,34 @@
        [InitThread start];
     }
     return self;
+}
+
+
+-(void)setUrlWithCut:(NSString*)url
+{
+    isCut = YES;
+    self.image = [UIImage imageNamed:@"tx.png"];
+    if(url == nil || url.length==0)
+        return;
+    
+    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *localPath = [zzURLImage GetLocalPath:url];
+    if(YES==[zzURLImage isFileHas:localPath])
+    {
+        NSData *data = [NSData dataWithContentsOfFile:localPath];
+        if(data.length>0)
+        {
+            UIImage *image =[UIImage imageWithData:data];
+            [self updateImage:image];
+        }
+    }
+    else
+    {
+        NSThread *InitThread = [[NSThread alloc]initWithTarget:self selector:@selector(InitThreadFunc:) object:url];
+        [InitThread start];
+    }
+    return;
 }
 
 -(void)InitThreadFunc:(id)sender
@@ -183,6 +245,28 @@
 -(void)updateImage:(id)sender
 {
     UIImage *image = sender;
+    
+    if(isCut)
+    {
+        int iW=image.size.width;
+        int iH=(iW/self.frame.size.width)*self.frame.size.height;
+        image = [zzImageView getSubImage:image rect:CGRectMake(0, (image.size.height-iH)/2,iW,iH)];
+    }
+    
     self.image = image;
+}
+
++(UIImage*)getSubImage:(UIImage*)image rect:(CGRect)rect
+{
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
+    CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
+    
+    UIGraphicsBeginImageContext(smallBounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, smallBounds, subImageRef);
+    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
 }
 @end
