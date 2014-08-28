@@ -43,6 +43,25 @@
     return [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
 }
 
+-(NSString *)GetReturnFromPost:(NSString*)urlStr  postData:(NSString*)_postData timeout:(int)timeout
+{
+    if(_postData==nil)
+        _postData = @"";
+    NSData *postData = [_postData dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setTimeoutInterval:timeout];
+    [request setURL:[NSURL URLWithString:urlStr]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    //同步请求的的代码
+    //returnData就是返回得到的数据
+    NSData *returnData =[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    return [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
+}
+
 -(NSString *)GetReturnFromGET:(NSString*)urlStr
 {
     return [NSString stringWithContentsOfURL:[NSURL URLWithString:urlStr] encoding:NSUTF8StringEncoding error:nil];

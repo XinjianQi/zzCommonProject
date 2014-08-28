@@ -26,15 +26,13 @@
 -(void)start
 {
     NSLog(@"异步%@",self.fileUrl);
-    NSError *err;
     //定义url
     //构建NSURL
     NSURL *fileUrl=[NSURL URLWithString:self.fileUrl];
     //构建nsurlrequest
-    NSURLRequest *request=[[NSURLRequest alloc]initWithURL:fileUrl cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval: 100.0];
+    NSURLRequest *request=[[NSURLRequest alloc]initWithURL:fileUrl cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
     //建立连接
-    __strong NSData *data=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&err];
-    __strong NSURLConnection *conn=[[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [[NSURLConnection alloc]initWithRequest:request delegate:self];
     //初始化connectionData;
     self.connectionData=[[NSMutableData alloc]init];
 }

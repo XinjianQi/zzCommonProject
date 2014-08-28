@@ -39,6 +39,8 @@
 
 -(NSString *)GetReturnFromPost:(NSString*)urlStr  postData:(NSString*)_postData;
 
+-(NSString *)GetReturnFromPost:(NSString*)urlStr  postData:(NSString*)_postData timeout:(int)timeout;
+
 -(NSString *)GetReturnFromGET:(NSString*)urlStr;
 
 +(UIImage*)GetLashenImage:(NSString*)imageName size:(CGRect)_size;

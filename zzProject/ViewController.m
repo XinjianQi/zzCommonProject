@@ -150,8 +150,9 @@
 
 //异步文件下载
 - (IBAction)touchProcess:(id)sender {
+    
     self.process.progress = 0;
-    zzDownFile *downfile = [[zzDownFile alloc]initWith:0 fileUrl:@"http://app.xtox.net/jykp/jykp.ipa" savePath:nil];
+    zzDownFile *downfile = [[zzDownFile alloc]initWith:0 fileUrl:@"http://ios.51guanggao.cn/data/sqlite/qipei.db" savePath:nil];
     downfile.delegate = self;
     [downfile start];
 }

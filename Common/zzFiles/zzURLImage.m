@@ -70,13 +70,13 @@
 }
 
 
-+(UIImage*)GetImageFromLocal:(NSString*)url
++(UIImage*)GetImageFromLocal:(NSString*)fileName
 {
-    if(url == nil || url.length==0)
+    if(fileName == nil || fileName.length==0)
         return nil;
     
-    url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *localPath = [zzURLImage GetLocalPath:url];
+    fileName =[fileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *localPath = [zzURLImage GetLocalPath:fileName];
     if(YES==[zzURLImage isFileHas:localPath])
     {
         NSData *data = [NSData dataWithContentsOfFile:localPath];
