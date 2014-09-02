@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18178FF019B5956700C87A93 /* zzKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18178FEF19B5956700C87A93 /* zzKeyChain.m */; };
+		18178FF219B5962E00C87A93 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18178FF119B5962E00C87A93 /* Security.framework */; };
 		187FD47C198A104E00623648 /* zzOpenGPS.m in Sources */ = {isa = PBXBuildFile; fileRef = 187FD47A198A104E00623648 /* zzOpenGPS.m */; };
 		187FD480198A10DB00623648 /* CSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = 187FD47F198A10DB00623648 /* CSqlite.m */; };
 		187FD485198A113000623648 /* zzInsetsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 187FD482198A113000623648 /* zzInsetsTextField.m */; };
@@ -73,6 +75,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18178FEE19B5956700C87A93 /* zzKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zzKeyChain.h; sourceTree = "<group>"; };
+		18178FEF19B5956700C87A93 /* zzKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zzKeyChain.m; sourceTree = "<group>"; };
+		18178FF119B5962E00C87A93 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		187FD479198A104E00623648 /* zzOpenGPS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zzOpenGPS.h; sourceTree = "<group>"; };
 		187FD47A198A104E00623648 /* zzOpenGPS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zzOpenGPS.m; sourceTree = "<group>"; };
 		187FD47E198A10DB00623648 /* CSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqlite.h; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18178FF219B5962E00C87A93 /* Security.framework in Frameworks */,
 				187FD48C198A11E600623648 /* libstdc++.dylib in Frameworks */,
 				187FD48A198A11E100623648 /* libz.dylib in Frameworks */,
 				187FD488198A115500623648 /* libsqlite3.dylib in Frameworks */,
@@ -238,6 +244,7 @@
 		18B0FBFB198A0D1D00A87C7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18178FF119B5962E00C87A93 /* Security.framework */,
 				187FD48B198A11E600623648 /* libstdc++.dylib */,
 				187FD489198A11E100623648 /* libz.dylib */,
 				187FD487198A115500623648 /* libsqlite3.dylib */,
@@ -450,6 +457,8 @@
 				18B0FC6B198A0DBB00A87C7D /* zzURLImage.m */,
 				18B0FC6C198A0DBB00A87C7D /* zzViewController.h */,
 				18B0FC6D198A0DBB00A87C7D /* zzViewController.m */,
+				18178FEE19B5956700C87A93 /* zzKeyChain.h */,
+				18178FEF19B5956700C87A93 /* zzKeyChain.m */,
 			);
 			path = zzFiles;
 			sourceTree = "<group>";
@@ -598,6 +607,7 @@
 				18B0FC83198A0DBB00A87C7D /* RECommonFunctions.m in Sources */,
 				18B0FC91198A0DBB00A87C7D /* zzSelectDateView.m in Sources */,
 				18B0FC87198A0DBB00A87C7D /* pinyin.m in Sources */,
+				18178FF019B5956700C87A93 /* zzKeyChain.m in Sources */,
 				18B0FC0D198A0D1D00A87C7D /* AppDelegate.m in Sources */,
 				18B0FC86198A0DBB00A87C7D /* DataTableDelegate.m in Sources */,
 				18B0FC09198A0D1D00A87C7D /* main.m in Sources */,
