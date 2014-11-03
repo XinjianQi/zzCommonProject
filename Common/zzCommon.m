@@ -31,7 +31,7 @@
     NSData *postData = [_postData dataUsingEncoding:NSUTF8StringEncoding];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setTimeoutInterval:15];
+    [request setTimeoutInterval:5];
     [request setURL:[NSURL URLWithString:urlStr]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -40,17 +40,25 @@
     //同步请求的的代码
     //returnData就是返回得到的数据
     NSData *returnData =[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    return [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
+    if(returnData==nil)
+    {
+        return nil;
+    }
+    else
+    {
+        return [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
+    }
 }
 
--(NSString *)GetReturnFromPost:(NSString*)urlStr  postData:(NSString*)_postData timeout:(int)timeout
+
+-(NSString *)GetReturnFromPost:(NSString*)urlStr  postData:(NSString*)_postData
 {
     if(_postData==nil)
         _postData = @"";
     NSData *postData = [_postData dataUsingEncoding:NSUTF8StringEncoding];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setTimeoutInterval:timeout];
+    [request setTimeoutInterval:5];
     [request setURL:[NSURL URLWithString:urlStr]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -59,7 +67,31 @@
     //同步请求的的代码
     //returnData就是返回得到的数据
     NSData *returnData =[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    return [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
+    if(returnData==nil)
+    {
+        return nil;
+    }
+    else
+    {
+        return [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
+    }
+}
+
+-(BOOL)PostFileToServer:(NSString*)urlStr  filePath:(NSString*)_filePath fileType:(NSString*)_fileType
+{
+    // 上传大小
+    NSNumber *contentLength = (NSNumber *) [[[NSFileManager defaultManager] attributesOfItemAtPath:_filePath error:NULL] objectForKey:NSFileSize];
+    NSInputStream *inputStreamForFile= [NSInputStream inputStreamWithFileAtPath:_filePath];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlStr]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:_fileType forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBodyStream:inputStreamForFile];
+    [request setValue:[contentLength description] forHTTPHeaderField:@"Content-Length"];
+    //同步请求的的代码
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    return YES;
 }
 
 -(NSString *)GetReturnFromGET:(NSString*)urlStr

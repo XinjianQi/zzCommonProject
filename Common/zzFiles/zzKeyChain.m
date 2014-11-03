@@ -8,7 +8,37 @@
 
 #import "zzKeyChain.h"
 
+static NSString  *theBundleId = nil;
+
 @implementation zzKeyChain
+
++(id)objectForKey:(NSString*)key
+{
+    if(theBundleId==nil)
+    {
+        theBundleId = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    }
+    return [zzKeyChain load:[key stringByAppendingString:theBundleId]];
+}
+
++(void)setObject:(id)obj forKey:(NSString*)key
+{
+    if(theBundleId==nil)
+    {
+        theBundleId = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    }
+    [zzKeyChain save:[key stringByAppendingString:theBundleId] data:obj];
+}
+
++(void)deleteKey:(NSString*)key
+{
+    if(theBundleId==nil)
+    {
+        theBundleId = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    }
+    [zzKeyChain delete:[key stringByAppendingString:theBundleId]];
+}
+
 + (NSMutableDictionary *)getKeychainQuery:(NSString *)service
 {
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:

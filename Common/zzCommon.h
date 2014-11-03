@@ -41,6 +41,8 @@
 
 -(NSString *)GetReturnFromPost:(NSString*)urlStr  postData:(NSString*)_postData timeout:(int)timeout;
 
+-(BOOL)PostFileToServer:(NSString*)urlStr  filePath:(NSString*)_filePath fileType:(NSString*)_fileType;
+
 -(NSString *)GetReturnFromGET:(NSString*)urlStr;
 
 +(UIImage*)GetLashenImage:(NSString*)imageName size:(CGRect)_size;

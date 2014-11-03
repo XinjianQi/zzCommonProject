@@ -32,9 +32,6 @@
     [super viewDidLoad];
     self.navigationItem.title = @"演示";
     // Do any additional setup after loading the view from its nib.
-//    [zzKeyChain save:@"zzkey" data:[@"hello" dataUsingEncoding:NSUTF8StringEncoding]];
-    NSData *data = [zzKeyChain load:@"zzkey"];
-    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     NSLog(str);
 }
